@@ -36,7 +36,7 @@ button {
 }
 
 .flame {
-  font-size: 42px;
+  font-size: 38px;
   line-height: 1;
   margin-bottom: 8px;
 }
@@ -118,6 +118,19 @@ h2 {
   font-weight: 700;
 }
 
+.advance-button {
+  width: 100%;
+  border: 0;
+  border-radius: 13px;
+  padding: 13px 16px;
+  margin-bottom: 14px;
+  background: #6f5138;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  box-shadow: 0 5px 14px rgba(75, 51, 31, 0.18);
+}
+
 .absence-buttons {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -146,24 +159,32 @@ h2 {
   font-size: 14px;
 }
 
+.kids-card {
+  padding: 14px 16px;
+}
+
+.kids-card h2 {
+  font-size: 18px;
+}
+
 .name-grid {
   display: grid;
-  gap: 11px;
-  margin-top: 14px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 label span {
   display: block;
-  margin: 0 0 5px 2px;
+  margin: 0 0 4px 2px;
   color: #806b59;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 input {
   width: 100%;
   border: 1px solid #d9c9b5;
-  border-radius: 12px;
-  padding: 11px 12px;
+  border-radius: 10px;
+  padding: 9px 10px;
   background: #fff;
   color: #35251b;
   outline: none;
@@ -174,27 +195,16 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(173, 137, 100, 0.12);
 }
 
-.secondary-button,
-.advance-button {
-  width: 100%;
-  border-radius: 13px;
-  padding: 13px 16px;
-  font-weight: 700;
-}
-
 .secondary-button {
-  margin-top: 12px;
+  width: 100%;
   border: 1px solid #d9c9b5;
+  border-radius: 11px;
+  padding: 9px 14px;
+  margin-top: 9px;
   background: #fff;
   color: #5b4635;
-}
-
-.advance-button {
-  border: 0;
-  background: #6f5138;
-  color: #fff;
-  font-size: 17px;
-  box-shadow: 0 5px 14px rgba(75, 51, 31, 0.18);
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .message {
@@ -221,5 +231,9 @@ input:focus {
 
   .absence-button {
     font-size: 14px;
+  }
+
+  .kids-card {
+    padding: 12px 14px;
   }
 }
