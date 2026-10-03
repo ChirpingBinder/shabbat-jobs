@@ -358,6 +358,7 @@ async function advanceToNextShabbat() {
     return;
   }
 
+  async function advanceToNextShabbat() {
   advanceSubstitutePointers();
 
   state.rotation =
