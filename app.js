@@ -1,7 +1,6 @@
 const SUPABASE_URL = "https://fupgxfeumsubvxpnmvli.supabase.co";
 const SUPABASE_KEY = "sb_publishable_YWiBhQ9Tcu6pPjpDoVJufQ_MQLVKNfR";
 
-
 const jobs = [
   { name: 'Candles', icon: '🕯️' },
   { name: 'Juice', icon: '🍇' },
@@ -370,6 +369,7 @@ async function advanceToNextShabbat() {
     console.error(error);
   }
 }
+
 document
   .getElementById('saveNames')
   .addEventListener(
