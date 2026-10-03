@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#fffaf0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Shabbat Jobs">
+  <title>Shabbat Jobs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+
+    <header class="hero">
+      <div class="flame">🕯️</div>
+      <h1>Shabbat Jobs</h1>
+      <p>Who is doing what this Shabbat?</p>
+    </header>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>This Shabbat</h2>
+        <span id="status">Loading…</span>
+      </div>
+
+      <div id="assignments" class="assignments"></div>
+    </section>
+
+    <section class="card">
+      <h2>Who is absent?</h2>
+      <p class="helper">Tap anyone who isn't here this Shabbat.</p>
+      <div id="absenceButtons" class="absence-buttons"></div>
+    </section>
+
+    <section class="card">
+      <h2>Kids</h2>
+
+      <div class="name-grid">
+        <label>
+          <span>Kid 1</span>
+          <input id="kid1" type="text" maxlength="30">
+        </label>
+
+        <label>
+          <span>Kid 2</span>
+          <input id="kid2" type="text" maxlength="30">
+        </label>
+
+        <label>
+          <span>Kid 3</span>
+          <input id="kid3" type="text" maxlength="30">
+        </label>
+      </div>
+
+      <button id="saveNames" class="secondary-button">
+        Save Names
+      </button>
+    </section>
+
+    <button id="advanceButton" class="advance-button">
+      Advance to Next Shabbat
+    </button>
+
+    <p id="message" class="message"></p>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

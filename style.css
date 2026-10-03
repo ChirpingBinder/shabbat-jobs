@@ -1,0 +1,225 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #35251b;
+  background: #fffaf0;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, #fffdf7 0%, #fffaf0 55%, #f7eddc 100%);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  width: min(100%, 560px);
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.hero {
+  text-align: center;
+  padding: 8px 0 22px;
+}
+
+.flame {
+  font-size: 42px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: -0.5px;
+}
+
+.hero p {
+  margin: 7px 0 0;
+  color: #806b59;
+  font-size: 16px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #eadfce;
+  border-radius: 20px;
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 16px rgba(91, 67, 42, 0.06);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 21px;
+}
+
+#status {
+  color: #8b725c;
+  font-size: 13px;
+  text-align: right;
+}
+
+.assignments {
+  display: grid;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.assignment {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  align-items: center;
+  gap: 13px;
+  padding: 13px;
+  border-radius: 15px;
+  background: #fff8e9;
+  border: 1px solid #f0dfbf;
+}
+
+.job-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #f5e6c8;
+  font-size: 27px;
+}
+
+.job-name {
+  font-size: 14px;
+  color: #8a735e;
+  margin-bottom: 2px;
+}
+
+.kid-name {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.absence-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+  margin-top: 14px;
+}
+
+.absence-button {
+  min-height: 48px;
+  border: 1px solid #d9c9b5;
+  border-radius: 13px;
+  background: #fff;
+  color: #49372a;
+  font-weight: 600;
+  padding: 8px;
+}
+
+.absence-button.selected {
+  background: #ead7c1;
+  border-color: #c59e76;
+}
+
+.helper {
+  margin: 6px 0 0;
+  color: #806b59;
+  font-size: 14px;
+}
+
+.name-grid {
+  display: grid;
+  gap: 11px;
+  margin-top: 14px;
+}
+
+label span {
+  display: block;
+  margin: 0 0 5px 2px;
+  color: #806b59;
+  font-size: 13px;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #d9c9b5;
+  border-radius: 12px;
+  padding: 11px 12px;
+  background: #fff;
+  color: #35251b;
+  outline: none;
+}
+
+input:focus {
+  border-color: #ad8964;
+  box-shadow: 0 0 0 3px rgba(173, 137, 100, 0.12);
+}
+
+.secondary-button,
+.advance-button {
+  width: 100%;
+  border-radius: 13px;
+  padding: 13px 16px;
+  font-weight: 700;
+}
+
+.secondary-button {
+  margin-top: 12px;
+  border: 1px solid #d9c9b5;
+  background: #fff;
+  color: #5b4635;
+}
+
+.advance-button {
+  border: 0;
+  background: #6f5138;
+  color: #fff;
+  font-size: 17px;
+  box-shadow: 0 5px 14px rgba(75, 51, 31, 0.18);
+}
+
+.message {
+  min-height: 20px;
+  margin: 12px 4px 0;
+  text-align: center;
+  color: #7b624e;
+  font-size: 13px;
+}
+
+@media (max-width: 380px) {
+  .app {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 29px;
+  }
+
+  .absence-button {
+    font-size: 14px;
+  }
+}
