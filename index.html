@@ -14,7 +14,7 @@
   <main class="app">
 
     <header class="hero">
-      <div class="flame">🕯️</div>
+      <div class="flame">🕯️🕯️</div>
       <h1>Shabbat Jobs</h1>
       <p>Who is doing what this Shabbat?</p>
     </header>
@@ -28,13 +28,17 @@
       <div id="assignments" class="assignments"></div>
     </section>
 
-    <section class="card">
-      <h2>Who is absent?</h2>
+    <button id="advanceButton" class="advance-button">
+      Advance to Next Shabbat
+    </button>
+
+    <section class="card missing-card">
+      <h2>Who is missing?</h2>
       <p class="helper">Tap anyone who isn't here this Shabbat.</p>
       <div id="absenceButtons" class="absence-buttons"></div>
     </section>
 
-    <section class="card">
+    <section class="card kids-card">
       <h2>Kids</h2>
 
       <div class="name-grid">
@@ -58,10 +62,6 @@
         Save Names
       </button>
     </section>
-
-    <button id="advanceButton" class="advance-button">
-      Advance to Next Shabbat
-    </button>
 
     <p id="message" class="message"></p>
 
