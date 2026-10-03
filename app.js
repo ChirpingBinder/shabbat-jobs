@@ -350,15 +350,6 @@ function advanceSubstitutePointers() {
 }
 
 async function advanceToNextShabbat() {
-  const confirmed = window.confirm(
-    'Advance to the next Shabbat? The current absences will be processed and the rotation will move forward.'
-  );
-
-  if (!confirmed) {
-    return;
-  }
-
-  async function advanceToNextShabbat() {
   advanceSubstitutePointers();
 
   state.rotation =
@@ -379,7 +370,6 @@ async function advanceToNextShabbat() {
     console.error(error);
   }
 }
-
 document
   .getElementById('saveNames')
   .addEventListener(
