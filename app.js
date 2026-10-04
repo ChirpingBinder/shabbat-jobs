@@ -44,7 +44,7 @@ function setMessage(text) {
 
 function normalAssignments() {
   return jobs.map((job, jobIndex) => {
-    const kidIndex = (state.rotation + jobIndex + 1) % 3;
+    const kidIndex = (state.rotation - jobIndex + 1 + 3) % 3;
     return kidIndex + 1;
   });
 }
