@@ -44,14 +44,14 @@ function setMessage(text) {
 
 function normalAssignments() {
   if (state.rotation === 0) {
-    return [2, 3, 1];
-  }
-
-  if (state.rotation === 1) {
     return [1, 2, 3];
   }
 
-  return [3, 1, 2];
+  if (state.rotation === 1) {
+    return [3, 1, 2];
+  }
+
+  return [2, 3, 1];
 }
 
 function otherKidIds(kidId) {
