@@ -116,15 +116,7 @@ function renderAssignments() {
     `;
   }).join('');
 
-  if (state.absent_kids.length === 0) {
-    statusEl.textContent = 'Everyone is here';
-  } else {
-    const absentNames = state.absent_kids
-      .map(id => names[id - 1])
-      .join(', ');
-
-    statusEl.textContent = `Absent: ${absentNames}`;
-  }
+  statusEl.textContent = 'Everyone is here';
 }
 
 function renderAbsenceButtons() {
@@ -178,7 +170,6 @@ function renderNameInputs() {
 
 function render() {
   renderAssignments();
-  renderAbsenceButtons();
   renderNameInputs();
 }
 
