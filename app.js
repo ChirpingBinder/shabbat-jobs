@@ -43,10 +43,15 @@ function setMessage(text) {
 }
 
 function normalAssignments() {
-  return jobs.map((job, jobIndex) => {
-    const kidIndex = (state.rotation - jobIndex + 1 + 3) % 3;
-    return kidIndex + 1;
-  });
+  if (state.rotation === 0) {
+    return [2, 3, 1];
+  }
+
+  if (state.rotation === 1) {
+    return [1, 2, 3];
+  }
+
+  return [3, 1, 2];
 }
 
 function otherKidIds(kidId) {
