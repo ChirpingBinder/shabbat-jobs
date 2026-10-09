@@ -1,6 +1,6 @@
 
-const SUPABASE_URL = "https://fupgxfeumsubvxpnmvli.supabase.co";
-const SUPABASE_KEY = "PASTE_YOUR_EXISTING_PUBLISHABLE_KEY_HERE";
+const SUPABASE_URL = "https://fupgxfeumsubvxpnmvli.supabase.co"; 
+const SUPABASE_KEY = "sb_publishable_YWiBhQ9Tcu6pPjpDoVJufQ_MQLVKNfR";
 
 const jobs = [
   { name: 'Candles', icon: '🕯️' },
