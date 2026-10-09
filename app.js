@@ -1,5 +1,6 @@
+
 const SUPABASE_URL = "https://fupgxfeumsubvxpnmvli.supabase.co";
-const SUPABASE_KEY = "sb_publishable_YWiBhQ9Tcu6pPjpDoVJufQ_MQLVKNfR";
+const SUPABASE_KEY = "PASTE_YOUR_EXISTING_PUBLISHABLE_KEY_HERE";
 
 const jobs = [
   { name: 'Candles', icon: '🕯️' },
@@ -22,11 +23,11 @@ let state = {
     "1": 2,
     "2": 3,
     "3": 1
-  }
+  },
+  last_advanced_at: null
 };
 
 const assignmentsEl = document.getElementById('assignments');
-const absenceButtonsEl = document.getElementById('absenceButtons');
 const statusEl = document.getElementById('status');
 const messageEl = document.getElementById('message');
 
@@ -107,7 +108,6 @@ function renderAssignments() {
     return `
       <div class="assignment">
         <div class="job-icon">${job.icon}</div>
-
         <div>
           <div class="job-name">${job.name}</div>
           <div class="kid-name">${kidName}</div>
@@ -116,45 +116,17 @@ function renderAssignments() {
     `;
   }).join('');
 
-  statusEl.textContent = 'Everyone is here';
-}
+  if (state.last_advanced_at) {
+    const date = new Date(state.last_advanced_at);
 
-function renderAbsenceButtons() {
-  const names = kidNames();
-
-  absenceButtonsEl.innerHTML = [1, 2, 3].map(id => {
-    const selected = state.absent_kids.includes(id);
-
-    return `
-      <button
-        class="absence-button ${selected ? 'selected' : ''}"
-        data-kid-id="${id}"
-        type="button"
-      >
-        ${names[id - 1]}
-      </button>
-    `;
-  }).join('');
-
-  document.querySelectorAll('.absence-button').forEach(button => {
-    button.addEventListener('click', () => {
-      const id = Number(button.dataset.kidId);
-
-      if (state.absent_kids.includes(id)) {
-        state.absent_kids = state.absent_kids.filter(
-          kidId => kidId !== id
-        );
-      } else {
-        state.absent_kids = [
-          ...state.absent_kids,
-          id
-        ];
-      }
-
-      render();
-      saveState();
-    });
-  });
+    statusEl.textContent = `Last advanced: ${date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    })}`;
+  } else {
+    statusEl.textContent = 'Last advanced: Not recorded yet';
+  }
 }
 
 function renderNameInputs() {
@@ -231,7 +203,10 @@ async function loadData() {
             "1": 2,
             "2": 3,
             "3": 1
-          }
+          },
+
+        last_advanced_at:
+          loadedState[0].last_advanced_at || null
       };
     }
 
@@ -240,7 +215,6 @@ async function loadData() {
 
   } catch (error) {
     console.error(error);
-
     render();
 
     setMessage(
@@ -250,32 +224,22 @@ async function loadData() {
 }
 
 async function saveState() {
-  try {
-    await supabaseRequest(
-      'shabbat_state?id=eq.1',
-      {
-        method: 'PATCH',
-
-        headers: {
-          Prefer: 'return=minimal'
-        },
-
-        body: JSON.stringify({
-          rotation: state.rotation,
-          absent_kids: state.absent_kids,
-          next_substitutes: state.next_substitutes,
-          updated_at: new Date().toISOString()
-        })
-      }
-    );
-
-    setMessage('');
-
-  } catch (error) {
-    console.error(error);
-
-    setMessage('The change could not be saved.');
-  }
+  await supabaseRequest(
+    'shabbat_state?id=eq.1',
+    {
+      method: 'PATCH',
+      headers: {
+        Prefer: 'return=minimal'
+      },
+      body: JSON.stringify({
+        rotation: state.rotation,
+        absent_kids: state.absent_kids,
+        next_substitutes: state.next_substitutes,
+        last_advanced_at: state.last_advanced_at,
+        updated_at: new Date().toISOString()
+      })
+    }
+  );
 }
 
 async function saveNames() {
@@ -298,11 +262,9 @@ async function saveNames() {
       'shabbat_settings?id=eq.1',
       {
         method: 'PATCH',
-
         headers: {
           Prefer: 'return=minimal'
         },
-
         body: JSON.stringify({
           ...names,
           updated_at: new Date().toISOString()
@@ -316,12 +278,10 @@ async function saveNames() {
     };
 
     render();
-
     setMessage('Names saved.');
 
   } catch (error) {
     console.error(error);
-
     setMessage('The names could not be saved.');
   }
 }
@@ -344,40 +304,60 @@ function advanceSubstitutePointers() {
   });
 }
 
+let advancing = false;
+
 async function advanceToNextShabbat() {
-  advanceSubstitutePointers();
+  if (advancing) {
+    return;
+  }
 
-  state.rotation =
-    (state.rotation + 1) % 3;
+  const confirmed = window.confirm(
+    'Are you sure you want to advance to the next Shabbat? The assignments will change.'
+  );
 
-  state.absent_kids = [];
+  if (!confirmed) {
+    return;
+  }
 
-  render();
+  advancing = true;
+
+  const previousState = JSON.parse(JSON.stringify(state));
 
   try {
+    advanceSubstitutePointers();
+
+    state.rotation = (state.rotation + 1) % 3;
+    state.absent_kids = [];
+    state.last_advanced_at = new Date().toISOString();
+
+    render();
+    setMessage('Saving your changes…');
+
     await saveState();
 
-    setMessage(
-      'Advanced to the next Shabbat.'
-    );
+    setMessage('Advanced to the next Shabbat.');
 
   } catch (error) {
     console.error(error);
+
+    state = previousState;
+    render();
+
+    setMessage(
+      'Could not save the advance. Your previous assignments have been restored.'
+    );
+
+  } finally {
+    advancing = false;
   }
 }
 
 document
   .getElementById('saveNames')
-  .addEventListener(
-    'click',
-    saveNames
-  );
+  .addEventListener('click', saveNames);
 
 document
   .getElementById('advanceButton')
-  .addEventListener(
-    'click',
-    advanceToNextShabbat
-  );
+  .addEventListener('click', advanceToNextShabbat);
 
 loadData();
